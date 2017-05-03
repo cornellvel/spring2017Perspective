@@ -1,0 +1,50 @@
+using UnityEngine;
+using System.Collections;
+using UnityEngine.Networking;
+using Valve.VR;
+
+public class Thrower : MonoBehaviour {
+
+    //public GameObject theball;
+    private BallScript ballscript;
+    private SteamVR_TrackedController left;
+    private bool trigger = false;
+
+
+    // Use this for initialization
+    void Start()
+    {
+        ballscript = GameObject.FindObjectOfType(typeof(BallScript)) as BallScript;
+        left = GameObject.Find("[CameraRig]/Controller (left)").GetComponent<SteamVR_TrackedController>();
+        
+    }
+
+	
+	// Update is called once per frame
+	void Update () {
+        if (left.triggerPressed)
+            Debug.Log("sup");
+        //trigger = true;
+        else
+            Debug.Log("hi");
+            //trigger = false;
+
+    }
+
+    public void ThrowBall()
+	{
+        // if (ballscript.location() == 2) 
+        // while (trigger == false); THIS STAYS HERE INFINITELY UNTIL TRIGGER GOES HIGH
+        //do some stuffs with animations, maybe 5-6 lines of code
+
+        ballscript.ReleaseMe();
+	}
+
+    public void PickBall()
+    {
+       // if (ballscript.location() == 5)
+        //while (trigger == false); THIS STAYS HERE INFINTELY UNTIL TRIGGER GOES HIGH
+        //do some stuffs with animations, maybe 5-6 lines of code
+        ballscript.pickUpBall();
+    }
+}
